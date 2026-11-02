@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B0C12">
+<title>SPAZIOCHARLIE</title>
+<meta name="description" content="SPAZIOCHARLIE, lo spazio creativo di Carlo Caire: cover artwork e collage digitali.">
+<link rel="icon" type="image/png" href="img/logo_spaziocharlie.png">
+<style>
+@font-face{font-family:"Mont";src:url("fonts/mont-regular.woff") format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Mont";src:url("fonts/mont-semibold.woff") format("woff");font-weight:600;font-display:swap}
+@font-face{font-family:"Mont Heavy";src:url("fonts/mont-heavy.woff") format("woff");font-weight:800;font-display:swap}
+:root{color-scheme:dark;--bg:#0B0C12;--bg2:#14161F;--ink:#ECEDF3;--muted:#9A9FB2;--line:#262A38;--accent:#E2B547;--gut:clamp(16px,4vw,56px);
+  --f-d:"Mont Heavy","Mont","Montserrat","Helvetica Neue",Arial,sans-serif;--f-t:"Mont","Montserrat","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-t);font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{padding-inline:var(--gut);max-width:1440px;margin-inline:auto}
+.label{font-weight:600;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.display{font-family:var(--f-d);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:-.02em;text-wrap:balance;margin:0}
+
+.bar{position:sticky;top:0;z-index:20;background:rgba(11,12,18,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:18px;padding-block:10px}
+.bar .mark img{height:34px;width:auto}
+.bar nav{margin-left:auto;display:flex;gap:clamp(14px,2.4vw,30px)}
+.bar nav a{text-decoration:none}
+.bar nav a:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid var(--line);border-radius:20px;padding:2px;flex:none}
+.lang button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;font-weight:600;letter-spacing:.12em;padding:6px 10px;border-radius:16px;cursor:pointer;line-height:1}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;padding:10px;cursor:pointer;flex-direction:column;justify-content:center;gap:6px}
+.burger span{display:block;height:2px;background:var(--ink);border-radius:2px}
+@media (max-width:760px){.bar nav{display:none}.lang{margin-left:auto}.burger{display:flex}}
+.menu{position:fixed;inset:0;z-index:50;background:#06070B;display:flex;flex-direction:column;overflow-y:auto}
+.menu-top{display:flex;justify-content:space-between;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);width:100%}
+.menu-x{width:44px;height:44px;border:0;background:transparent;color:var(--ink);font-size:34px;line-height:1;cursor:pointer}
+.menu-nav{display:flex;flex-direction:column;padding-block:16px;width:100%}
+.menu-nav a{display:flex;gap:14px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--f-d);font-weight:800;text-transform:uppercase;font-size:clamp(26px,8vw,36px);line-height:1}
+.menu-nav small{font-family:var(--f-t);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--accent)}
+
+/* hero */
+.hero-bg{background:linear-gradient(180deg,rgba(11,12,18,.5) 0%,rgba(11,12,18,.62) 60%,var(--bg) 100%),url("img/art_torre.jpg") center 40%/cover no-repeat}
+.hero-bg .hero{min-height:min(88vh,860px);display:flex;flex-direction:column;justify-content:flex-end}
+.hero-bg .hero-sub p{text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.hero{padding-block:clamp(40px,7vw,96px) clamp(28px,4vw,48px)}
+.hero h1{font-size:clamp(34px,9.4vw,150px);letter-spacing:-.03em}
+.hero .sub{font-family:var(--f-d);font-weight:800;text-transform:uppercase;color:var(--accent);font-size:clamp(18px,3.2vw,46px);line-height:1.05;letter-spacing:-.01em;margin:clamp(8px,1.2vw,16px) 0 0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:end;margin-top:clamp(20px,3vw,36px)}
+.hero-sub p{margin:0;font-size:clamp(17px,1.7vw,22px);line-height:1.4;max-width:42ch}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0}
+.stats div{border-top:1px solid var(--ink);padding-top:10px}
+.stats dt{font-family:var(--f-d);font-weight:800;font-size:clamp(30px,3.6vw,48px);line-height:1}
+.stats dd{margin:6px 0 0;font-size:12.5px;color:var(--muted);line-height:1.35}
+@media (max-width:760px){.hero-sub{grid-template-columns:1fr}}
+.strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.strip img{width:100%;aspect-ratio:1;object-fit:cover}
+@media (max-width:760px){.strip{grid-template-columns:repeat(3,minmax(0,1fr))}.strip img:nth-child(n+4){display:none}}
+
+section{scroll-margin-top:60px;padding-block:clamp(56px,8vw,112px);border-top:1px solid var(--line)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(20px,4vw,64px);margin-bottom:clamp(28px,4vw,48px);align-items:end}
+.head h2{font-size:clamp(34px,4.6vw,68px);margin-top:10px}
+.head p{margin:0;max-width:62ch;font-size:15.5px;color:#C9CCDA}
+.head .hint{display:block;margin-top:12px}
+@media (max-width:860px){.head{grid-template-columns:1fr}}
+
+/* bio */
+.bio{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,5vw,80px)}
+.bio-main{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;align-items:start}
+.bio-main img{width:150px;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1)}
+.bio-main h2{font-size:clamp(34px,4.6vw,64px);margin:8px 0 18px}
+.bio-main p{margin:0 0 14px;max-width:60ch}
+.bio-main p.lead{font-size:clamp(18px,1.7vw,22px);line-height:1.4}
+.facts{display:grid;gap:26px;align-content:start}
+.facts h3{margin:0 0 10px}
+.facts ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.facts li{border-top:1px solid var(--line);padding:9px 0;font-weight:600;font-size:14.5px;line-height:1.35;display:flex;gap:12px;align-items:baseline}
+.facts li small{font-family:var(--f-t);font-size:10.5px;color:var(--accent);letter-spacing:.12em;font-weight:600}
+.facts li span{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+@media (max-width:860px){.bio{grid-template-columns:1fr}}
+@media (max-width:480px){.bio-main{grid-template-columns:1fr}.bio-main img{width:120px}}
+
+/* covers */
+.covers{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
+.covers figure{margin:0}
+.covers img{width:100%;aspect-ratio:1;object-fit:cover;cursor:zoom-in;transition:transform .45s cubic-bezier(.2,.7,.2,1),filter .3s}
+.covers figure:hover img{transform:translateY(-4px)}
+.covers figcaption{margin-top:9px;font-size:13px;line-height:1.3}
+.covers figcaption b{display:block;font-weight:600}
+.covers figcaption span{color:var(--muted);font-size:12px}
+@media (max-width:1000px){.covers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* collage */
+.collage{columns:3;column-gap:clamp(10px,1.4vw,20px)}
+.collage figure{margin:0 0 clamp(10px,1.4vw,20px);break-inside:avoid}
+.collage img{width:100%;cursor:zoom-in;background:#fff;padding:7%}
+@media (max-width:1000px){.collage{columns:2}}
+
+/* phone carousels */
+.ctl{display:none}
+@media (max-width:760px){
+  .car{display:flex!important;columns:auto;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;scrollbar-width:none;overscroll-behavior-x:contain;margin-inline:calc(-1*var(--gut));padding-inline:var(--gut);scroll-padding-inline:var(--gut);align-items:flex-start}
+  .car::-webkit-scrollbar{display:none}
+  .car>figure{flex:0 0 78%;scroll-snap-align:start;margin:0}
+  .collage.car>figure{flex-basis:82%}
+  .collage.car{align-items:center}
+  .ctl{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+  .ctl button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:18px;cursor:pointer}
+  .ctl button:disabled{opacity:.3}
+  .ctl .n{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+  .ctl .full{width:auto;border-radius:22px;padding:0 16px;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:60;background:#05060A;display:flex;flex-direction:column}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:8px var(--gut)}
+.lb-top .n{font-size:12px;font-weight:600;letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+.lb-x{width:44px;height:44px;border:0;background:transparent;color:var(--ink);font-size:34px;line-height:1;cursor:pointer}
+.lb-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 var(--gut);position:relative}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;user-select:none}
+.lb-stage img.framed{background:#fff;padding:clamp(14px,3.5vmin,40px)}
+.lb-cap{min-height:48px;padding:10px var(--gut) 20px;text-align:center;color:#C9CCDA;font-size:13px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(20,22,31,.8);color:var(--ink);font-size:20px;cursor:pointer}
+.lb-prev{left:12px}.lb-next{right:12px}
+@media (max-width:760px){.lb-nav{display:none}}
+
+/* contact */
+.contact h2{font-size:clamp(44px,8.4vw,128px);margin:12px 0 28px}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.rows{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.rows>div{border-top:1px solid var(--ink);padding-top:10px;min-width:0}
+.rows .v{margin:6px 0 0;font-size:clamp(15px,1.4vw,18px);font-weight:600;overflow-wrap:anywhere}
+.online{display:grid;gap:8px;margin-top:8px}
+.ig{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;line-height:1.2}
+.ig:hover{color:var(--accent)}
+.igi{width:15px;height:15px;color:var(--accent);flex:none}
+.copy{margin-top:10px;font:inherit;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;background:var(--accent);color:#0B0C12;border:0;padding:9px 14px;cursor:pointer}
+.avail{margin:32px 0 0;color:#C9CCDA}
+@media (max-width:860px){.rows{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.rows{grid-template-columns:1fr}}
+footer{padding-block:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="SPAZIOCHARLIE"><img src="img/logo_spaziocharlie.png" alt="Logo SPAZIOCHARLIE"></a>
+    <nav class="label" aria-label="Sezioni"><a href="#bio">Bio</a><a href="#cover">Cover</a><a href="#collage">Collage</a><a href="#contatti">Contatti</a></nav>
+    <div class="lang" role="group" aria-label="Lingua / Language"><button type="button" data-lang="it" aria-pressed="true">IT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+    <button class="burger" id="burger" type="button" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="menu" id="menu" hidden>
+  <div class="menu-top wrap"><img src="img/logo_spaziocharlie.png" alt="Logo SPAZIOCHARLIE" style="height:34px;width:auto"><button class="menu-x" id="menu-x" type="button" aria-label="Chiudi il menu">×</button></div>
+  <nav class="wrap menu-nav" aria-label="Sezioni"><a href="#bio"><small>01</small>Bio</a><a href="#cover"><small>02</small>Cover</a><a href="#collage"><small>03</small>Collage</a><a href="#contatti"><small>04</small>Contatti</a></nav>
+</div>
+
+<main id="top">
+  <div class="hero-bg"><div class="wrap hero">
+    <p class="label">Portfolio · Milano</p>
+    <h1 class="display">SPAZIOCHARLIE</h1>
+    <p class="sub">Carlo Caire – Creative Space</p>
+    <div class="hero-sub">
+      <p>Art direction musicale per Kayros Music, etichetta sotto Universal Music, e collage digitali che ricompongono il quotidiano in prospettive impossibili.</p>
+    </div>
+  </div></div>
+
+  <section id="bio">
+    <div class="wrap bio">
+      <div class="bio-main">
+        <img src="img/ritratto.jpg" alt="Ritratto di Carlo Caire">
+        <div>
+          <p class="label">Bio</p>
+          <h2 class="display">Chi sono</h2>
+          <p class="lead">Sono Carlo Caire, designer con base a Milano.</p>
+          <p>Da tre anni lavoro con Kayros Music, etichetta discografica sotto Universal Music, dove seguo l'immagine degli artisti dall'idea all'uscita: sviluppo il concept di canzoni e album, disegno le cover, scrivo gli script dei video, realizzo foto e video di backstage e costruisco la strategia di marketing di ogni release.</p>
+          <p>Lavoro come freelancer dal 2019, tra brand identity, campagne e progettazione di prodotto. Dal 2026 insegno Graphic Design alla Ferrari Fashion School di Milano. Con CCreative Art porto avanti la mia ricerca personale sul collage digitale.</p>
+          <p>Per i progetti fotografici e video collaboro con il fotografo e videomaker Anthony Sartori.</p>
+        </div>
+      </div>
+      <div class="facts">
+        <div><h3 class="label">Kayros Music · cosa seguo</h3><ul>
+          <li><small>01</small>Concept di canzoni e album</li>
+          <li><small>02</small>Cover artwork</li>
+          <li><small>03</small>Script dei video</li>
+          <li><small>04</small>Foto e video di backstage</li>
+          <li><small>05</small>Strategia di marketing</li>
+        </ul></div>
+        <div><h3 class="label">Formazione</h3><ul>
+          <li><div>Laurea magistrale in Design del Prodotto e dell'Evento<span>Università di Genova</span></div></li>
+          <li><div>Master in Architettura e Design Sostenibile<span>School of Sustainability, Mario Cucinella Architects</span></div></li>
+        </ul></div>
+        <div><h3 class="label">Collaborazioni</h3><ul>
+          <li><div>Anthony Sartori<span>Fotografo e videomaker</span><a class="ig" href="https://www.instagram.com/realsartosky/" style="margin-top:6px;font-size:13px"><svg class="igi" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></svg>@realsartosky</a></div></li>
+        </ul></div>
+        <div><h3 class="label">Insegnamento</h3><ul>
+          <li><div>Graphic Design, Ferrari Fashion School, Milano · dal 2026</div></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cover">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label">Kayros Music · 2024 – oggi</p><h2 class="display">Cover per singoli ed EP</h2></div>
+        <div><p>Ogni artista ha un linguaggio diverso: parto dal brano e dalla sua storia e scelgo tra fotografia rielaborata, collage, illustrazione, pittura digitale o sola tipografia. Ogni cover deve funzionare in miniatura sulle piattaforme e a tutto schermo.</p><span class="label hint">Tocca un'immagine per ingrandirla.</span></div>
+      </div>
+      <div class="covers car">
+<figure><img src="img/k_karaba.jpg" alt="Cover di Karabà, Latif Monet" loading="lazy"><figcaption><b>Karabà</b><span>Latif Monet</span></figcaption></figure>
+<figure><img src="img/k_avvelenato.jpg" alt="Cover di Avvelenato, Fandy" loading="lazy"><figcaption><b>Avvelenato</b><span>Fandy</span></figcaption></figure>
+<figure><img src="img/k_soldi.jpg" alt="Cover di Soldi, Kriim" loading="lazy"><figcaption><b>Soldi</b><span>Kriim</span></figcaption></figure>
+<figure><img src="img/k_volo.jpg" alt="Cover di Volo, Andr3w" loading="lazy"><figcaption><b>Volo</b><span>Andr3w</span></figcaption></figure>
+<figure><img src="img/k_fastlife.jpg" alt="Cover di Fast Life, Fandy" loading="lazy"><figcaption><b>Fast Life</b><span>Fandy</span></figcaption></figure>
+<figure><img src="img/k_vicolo.jpg" alt="Cover di Vicolo, Commando ft. Real Esse, okeychico" loading="lazy"><figcaption><b>Vicolo</b><span>Commando ft. Real Esse, okeychico</span></figcaption></figure>
+<figure><img src="img/k_mamuthones.jpg" alt="Cover di Mamuthones, Latif Monet" loading="lazy"><figcaption><b>Mamuthones</b><span>Latif Monet</span></figcaption></figure>
+<figure><img src="img/k_euro.jpg" alt="Cover di €uro, Yambo" loading="lazy"><figcaption><b>€uro</b><span>Yambo</span></figcaption></figure>
+<figure><img src="img/k_gover.jpg" alt="Cover di Gover, Simo" loading="lazy"><figcaption><b>Gover</b><span>Simo</span></figcaption></figure>
+<figure><img src="img/k_buiopesto.jpg" alt="Cover di Buio Pesto, Willy Boy" loading="lazy"><figcaption><b>Buio Pesto</b><span>Willy Boy</span></figcaption></figure>
+<figure><img src="img/k_illusione.jpg" alt="Cover di Illusione Manipolazione, Real Esse" loading="lazy"><figcaption><b>Illusione Manipolazione</b><span>Real Esse</span></figcaption></figure>
+<figure><img src="img/k_gangstas.jpg" alt="Cover di Gangsta&#x27;s Paradise, Yambo" loading="lazy"><figcaption><b>Gangsta&#x27;s Paradise</b><span>Yambo</span></figcaption></figure>
+<figure><img src="img/k_ispirame.jpg" alt="Cover di Ispirame, Fandy" loading="lazy"><figcaption><b>Ispirame</b><span>Fandy</span></figcaption></figure>
+<figure><img src="img/k_abitudini.jpg" alt="Cover di Abitudini, Latif Monet" loading="lazy"><figcaption><b>Abitudini</b><span>Latif Monet</span></figcaption></figure>
+<figure><img src="img/k_milly.jpg" alt="Cover di Milly, Commando" loading="lazy"><figcaption><b>Milly</b><span>Commando</span></figcaption></figure>
+<figure><img src="img/k_okchico.jpg" alt="Cover di Ok Chico, okeychico" loading="lazy"><figcaption><b>Ok Chico</b><span>okeychico</span></figcaption></figure>
+<figure><img src="img/k_basic.jpg" alt="Cover di Basic, Yambo ft. Fandy" loading="lazy"><figcaption><b>Basic</b><span>Yambo ft. Fandy</span></figcaption></figure>
+<figure><img src="img/k_flashback.jpg" alt="Cover di Flashback, Ryuk ZC" loading="lazy"><figcaption><b>Flashback</b><span>Ryuk ZC</span></figcaption></figure>
+<figure><img src="img/k_uomini.jpg" alt="Cover di Anche gli uomini soffrono, Rnawa" loading="lazy"><figcaption><b>Anche gli uomini soffrono</b><span>Rnawa</span></figcaption></figure>
+<figure><img src="img/k_lavivo.jpg" alt="Cover di La vivo ancora, Ryuk ZC" loading="lazy"><figcaption><b>La vivo ancora</b><span>Ryuk ZC</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="collage">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="label">CCreative Art · progetto personale</p><h2 class="display">Il quotidiano, ricomposto</h2></div>
+        <div><p>Oggetti di tutti i giorni e luoghi reali tolti dal loro contesto e uniti in una realtà nuova. È il laboratorio dove alleno fotomontaggio, color grading e postproduzione: le stesse tecniche che porto nelle cover.</p><span class="label hint">Tocca un'immagine per ingrandirla.</span></div>
+      </div>
+      <div class="collage car">
+<figure><img src="img/cc_caffe.jpg" alt="Collage: Carovana di cammelli nella schiuma di una tazza di caffè" loading="lazy"></figure>
+<figure><img src="img/cc_pozzanghera.jpg" alt="Collage: Un bambino guarda nella pozzanghera un mondo capovolto" loading="lazy"></figure>
+<figure><img src="img/art_lampione.jpg" alt="Collage: Un lampione con la luna come lampada" loading="lazy"></figure>
+<figure><img src="img/cc_vinile.jpg" alt="Collage: Velocisti che corrono sul solco di un vinile" loading="lazy"></figure>
+<figure><img src="img/cc_deserto.jpg" alt="Collage: Una duna di sabbia che diventa una cupola" loading="lazy"></figure>
+<figure><img src="img/art_torre.jpg" alt="Collage: Una torre sommersa vista dall&#x27;alto" loading="lazy"></figure>
+<figure><img src="img/cc_crackermoon.jpg" alt="Collage: Una focaccia al posto della luna" loading="lazy"></figure>
+<figure><img src="img/art_tunnel.jpg" alt="Collage: Un tunnel che si apre sul mare" loading="lazy"></figure>
+<figure><img src="img/cc_onda.jpg" alt="Collage: Un&#x27;onda di schiuma sotto la luna" loading="lazy"></figure>
+<figure><img src="img/cc_tuffo.jpg" alt="Collage: Un tuffatore tra le facciate di un vicolo" loading="lazy"></figure>
+<figure><img src="img/art_canoa.jpg" alt="Collage: Una canoa tra le nuvole capovolte" loading="lazy"></figure>
+<figure><img src="img/cc_scalatore.jpg" alt="Collage: Uno scalatore su una parete fatta di mare" loading="lazy"></figure>
+<figure><img src="img/cc_libreria.jpg" alt="Collage: Una libreria che contiene i balconi di un palazzo" loading="lazy"></figure>
+<figure><img src="img/art_galleria.jpg" alt="Collage: Una galleria con un&#x27;auto rossa" loading="lazy"></figure>
+<figure><img src="img/cc_corallo.jpg" alt="Collage: Un albero di corallo rosso sopra una panchina" loading="lazy"></figure>
+<figure><img src="img/cc_vulcano.jpg" alt="Collage: Un vasetto di spezie che diventa un vulcano" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contatti">
+    <div class="wrap">
+      <p class="label">Contatti</p>
+      <h2 class="display">Lavoriamo<br><em>insieme.</em></h2>
+      <div class="rows">
+        <div><p class="label">Email</p><p class="v"><a href="mailto:crlcaire@gmail.com" id="mail">crlcaire@gmail.com</a></p><button class="copy" id="copy" type="button">Copia email</button></div>
+        <div><p class="label">Telefono</p><p class="v"><a href="tel:+393404564755">+39 340 456 4755</a></p></div>
+        <div><p class="label">Città</p><p class="v">Milano</p></div>
+        <div><p class="label">Online</p><div class="online"><a class="ig" href="https://www.instagram.com/spaziocharlie/"><svg class="igi" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></svg>@spaziocharlie</a><a class="ig" href="https://www.instagram.com/ccreative__art/"><svg class="igi" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></svg>@ccreative__art</a><a class="ig" href="https://www.kayrosmusic.it/">kayrosmusic.it ↗</a><a class="ig" href="https://www.linkedin.com/in/carlo-caire/">LinkedIn ↗</a></div></div>
+      </div>
+      <p class="avail">Disponibile per collaborazioni in-house, part-time o a progetto su Milano.</p>
+    </div>
+  </section>
+</main>
+<footer class="wrap label"><span>© 2026 Carlo Caire</span><span>Cover artwork · Collage · Milano</span></footer>
+
+<script>
+(function(){
+  var TX={"Bio": "Bio", "Cover": "Covers", "Collage": "Collage", "Contatti": "Contact", "Portfolio · Milano": "Portfolio · Milan", "Cover artwork e collage digitali.": "Cover artwork and digital collage.", "Art direction musicale per Kayros Music, etichetta sotto Universal Music, e collage digitali che ricompongono il quotidiano in prospettive impossibili.": "Music art direction for Kayros Music, a label under Universal Music, and digital collages that recompose everyday life into impossible perspectives.", "cover": "covers", "collage": "collages", "anni con Kayros Music": "years with Kayros Music", "Chi sono": "About me", "Sono Carlo Caire, designer con base a Milano.": "I am Carlo Caire, a designer based in Milan.", "Da tre anni lavoro con Kayros Music, etichetta discografica sotto Universal Music, dove seguo l'immagine degli artisti dall'idea all'uscita: sviluppo il concept di canzoni e album, disegno le cover, scrivo gli script dei video, realizzo foto e video di backstage e costruisco la strategia di marketing di ogni release.": "For three years I have worked with Kayros Music, a record label under Universal Music, shaping each artist's image from idea to release: I develop the concept of songs and albums, design the covers, write the video scripts, shoot backstage photo and video, and build the marketing strategy for every release.", "Lavoro come freelancer dal 2019, tra brand identity, campagne e progettazione di prodotto. Dal 2026 insegno Graphic Design alla Ferrari Fashion School di Milano. Con CCreative Art porto avanti la mia ricerca personale sul collage digitale.": "I have worked as a freelancer since 2019 across brand identity, campaigns and product design. Since 2026 I have taught Graphic Design at Ferrari Fashion School in Milan. Through CCreative Art I pursue my personal research in digital collage.", "Kayros Music · cosa seguo": "Kayros Music · what I do", "Concept di canzoni e album": "Song and album concepts", "Cover artwork": "Cover artwork", "Script dei video": "Video scripts", "Foto e video di backstage": "Backstage photo and video", "Strategia di marketing": "Marketing strategy", "Formazione": "Education", "Laurea magistrale in Design del Prodotto e dell'Evento": "Master's degree in Product and Event Design", "Università di Genova": "University of Genoa", "Master in Architettura e Design Sostenibile": "Master in Sustainable Architecture and Design", "School of Sustainability, Mario Cucinella Architects": "School of Sustainability, Mario Cucinella Architects", "Insegnamento": "Teaching", "Graphic Design, Ferrari Fashion School, Milano · dal 2026": "Graphic Design, Ferrari Fashion School, Milan · since 2026", "Kayros Music · 2024 – oggi": "Kayros Music · 2024 – present", "Cover per singoli ed EP": "Covers for singles and EPs", "Ogni artista ha un linguaggio diverso: parto dal brano e dalla sua storia e scelgo tra fotografia rielaborata, collage, illustrazione, pittura digitale o sola tipografia. Ogni cover deve funzionare in miniatura sulle piattaforme e a tutto schermo.": "Every artist has a different language: I start from the track and its story, then choose between reworked photography, collage, illustration, digital painting or pure typography. Each cover has to work as a thumbnail on streaming platforms and full screen.", "CCreative Art · progetto personale": "CCreative Art · personal project", "Il quotidiano, ricomposto": "Everyday life, recomposed", "Oggetti di tutti i giorni e luoghi reali tolti dal loro contesto e uniti in una realtà nuova. È il laboratorio dove alleno fotomontaggio, color grading e postproduzione: le stesse tecniche che porto nelle cover.": "Everyday objects and real places taken out of context and joined into a new reality. It is the lab where I practise photomontage, colour grading and post-production: the same techniques I bring to my covers.", "Tocca un'immagine per ingrandirla.": "Tap an image to enlarge it.", "Lavoriamo": "Let's work", "insieme.": "together.", "Email": "Email", "Telefono": "Phone", "Città": "City", "Milano": "Milan", "Online": "Online", "Copia email": "Copy email", "Disponibile per collaborazioni in-house, part-time o a progetto su Milano.": "Available for in-house, part-time or project-based work in Milan.", "© 2026 Carlo Caire": "© 2026 Carlo Caire", "Cover artwork · Collage · Milano": "Cover artwork · Collage · Milan", "Per i progetti fotografici e video collaboro con il fotografo e videomaker Anthony Sartori.": "For photo and video projects I collaborate with photographer and videomaker Anthony Sartori.", "Collaborazioni": "Collaborations", "Fotografo e videomaker": "Photographer and videomaker"}, AT={"Apri il menu": "Open menu", "Chiudi il menu": "Close menu", "Ritratto di Carlo Caire": "Portrait of Carlo Caire", "Logo Carlo Caire": "Carlo Caire logo", "Sezioni": "Sections", "Cover di Karabà, Latif Monet": "Karabà cover, Latif Monet", "Cover di Mamuthones, Latif Monet": "Mamuthones cover, Latif Monet", "Cover di Abitudini, Latif Monet": "Abitudini cover, Latif Monet", "Cover di Avvelenato, Fandy": "Avvelenato cover, Fandy", "Cover di Soldi, Kriim": "Soldi cover, Kriim", "Cover di Volo, Andr3w": "Volo cover, Andr3w", "Cover di Fast Life, Fandy": "Fast Life cover, Fandy", "Cover di Vicolo, Commando ft. Real Esse, okeychico": "Vicolo cover, Commando ft. Real Esse, okeychico", "Cover di €uro, Yambo": "€uro cover, Yambo", "Cover di Gover, Simo": "Gover cover, Simo", "Cover di Buio Pesto, Willy Boy": "Buio Pesto cover, Willy Boy", "Cover di Illusione Manipolazione, Real Esse": "Illusione Manipolazione cover, Real Esse", "Cover di Gangsta's Paradise, Yambo": "Gangsta's Paradise cover, Yambo", "Cover di Ispirame, Fandy": "Ispirame cover, Fandy", "Cover di Milly, Commando": "Milly cover, Commando", "Cover di Ok Chico, okeychico": "Ok Chico cover, okeychico", "Cover di Basic, Yambo ft. Fandy": "Basic cover, Yambo ft. Fandy", "Cover di Flashback, Ryuk ZC": "Flashback cover, Ryuk ZC", "Cover di Anche gli uomini soffrono, Rnawa": "Anche gli uomini soffrono cover, Rnawa", "Cover di La vivo ancora, Ryuk ZC": "La vivo ancora cover, Ryuk ZC", "Collage: Carovana di cammelli nella schiuma di una tazza di caffè": "Collage: A camel caravan in the foam of a coffee cup", "Collage: Un bambino guarda nella pozzanghera un mondo capovolto": "Collage: A child looks at an upside-down world in a puddle", "Collage: Un lampione con la luna come lampada": "Collage: A street lamp with the moon as its bulb", "Collage: Velocisti che corrono sul solco di un vinile": "Collage: Sprinters running on the groove of a vinyl record", "Collage: Una duna di sabbia che diventa una cupola": "Collage: A sand dune turning into a dome", "Collage: Una torre sommersa vista dall'alto": "Collage: A submerged tower seen from above", "Collage: Una focaccia al posto della luna": "Collage: A focaccia in place of the moon", "Collage: Un tunnel che si apre sul mare": "Collage: A tunnel opening onto the sea", "Collage: Un'onda di schiuma sotto la luna": "Collage: A foam wave under the moon", "Collage: Un tuffatore tra le facciate di un vicolo": "Collage: A diver between the façades of an alley", "Collage: Una canoa tra le nuvole capovolte": "Collage: A canoe among upside-down clouds", "Collage: Uno scalatore su una parete fatta di mare": "Collage: A climber on a wall made of sea", "Collage: Una libreria che contiene i balconi di un palazzo": "Collage: A bookcase holding the balconies of a building", "Collage: Una galleria con un'auto rossa": "Collage: A tunnel with a red car", "Collage: Un albero di corallo rosso sopra una panchina": "Collage: A red coral tree above a bench", "Collage: Un vasetto di spezie che diventa un vulcano": "Collage: A spice jar turning into a volcano"};
+  var lang='it';
+  /* menu */
+  var menu=document.getElementById('menu'),burger=document.getElementById('burger');
+  function om(){menu.hidden=false;burger.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';}
+  function cm(){menu.hidden=true;burger.setAttribute('aria-expanded','false');document.body.style.overflow='';}
+  burger.onclick=om; document.getElementById('menu-x').onclick=cm;
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',cm);});
+  /* lightbox */
+  var lb,list=[],idx=0;
+  function L(it,en){return lang==='en'?en:it;}
+  function build(){
+    lb=document.createElement('div');lb.className='lb';lb.hidden=true;lb.setAttribute('role','dialog');
+    lb.innerHTML='<div class="lb-top"><span class="n"></span><button class="lb-x" type="button">×</button></div><div class="lb-stage"><button class="lb-nav lb-prev" type="button">‹</button><img alt=""><button class="lb-nav lb-next" type="button">›</button></div><div class="lb-cap"></div>';
+    document.body.appendChild(lb);
+    lb.querySelector('.lb-x').onclick=close;lb.querySelector('.lb-prev').onclick=function(){go(-1)};lb.querySelector('.lb-next').onclick=function(){go(1)};
+    lb.querySelector('.lb-stage').addEventListener('click',function(e){if(e.target===this)close();});
+    var x0=null;lb.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    lb.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>40)go(d<0?1:-1);x0=null;});
+  }
+  function show(){var im=list[idx],el=lb.querySelector('.lb-stage img');el.src=im.currentSrc||im.src;el.alt=im.alt;el.classList.toggle('framed',!!im.closest('.collage'));
+    var fc=im.closest('figure').querySelector('figcaption');lb.querySelector('.lb-cap').textContent=fc?fc.querySelector('b').textContent+' · '+fc.querySelector('span').textContent:'';
+    lb.querySelector('.n').textContent=(idx+1)+' / '+list.length;
+    lb.querySelector('.lb-x').setAttribute('aria-label',L('Chiudi','Close'));lb.querySelector('.lb-prev').setAttribute('aria-label',L('Precedente','Previous'));lb.querySelector('.lb-next').setAttribute('aria-label',L('Successiva','Next'));}
+  function go(d){idx=(idx+d+list.length)%list.length;show();}
+  function open(imgs,i){if(!lb)build();list=imgs;idx=i;show();lb.hidden=false;document.body.style.overflow='hidden';}
+  function close(){lb.hidden=true;document.body.style.overflow='';}
+  document.addEventListener('keydown',function(e){if(lb&&!lb.hidden){if(e.key==='Escape')close();if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);}else if(!menu.hidden&&e.key==='Escape')cm();});
+  document.querySelectorAll('.car').forEach(function(c){
+    var imgs=[].slice.call(c.querySelectorAll('img'));
+    imgs.forEach(function(im,i){im.addEventListener('click',function(){open(imgs,i);});});
+    var items=[].slice.call(c.children);
+    var ctl=document.createElement('div');ctl.className='ctl';
+    ctl.innerHTML='<button type="button" class="p">←</button><span class="n"></span><button type="button" class="full">Slideshow</button><button type="button" class="x">→</button>';
+    c.parentNode.insertBefore(ctl,c.nextSibling);
+    var n=ctl.querySelector('.n'),p=ctl.querySelector('.p'),x=ctl.querySelector('.x');
+    function pos(it){return it.getBoundingClientRect().left-c.getBoundingClientRect().left+c.scrollLeft-parseFloat(getComputedStyle(c).paddingLeft||0);}
+    function cur(){var l=c.scrollLeft,b=0,bd=1e9;items.forEach(function(it,i){var d=Math.abs(pos(it)-l);if(d<bd){bd=d;b=i;}});return b;}
+    function upd(){var i=cur();n.textContent=(i+1)+' / '+items.length;p.disabled=i===0;x.disabled=c.scrollLeft+c.clientWidth>=c.scrollWidth-4;
+      p.setAttribute('aria-label',L('Precedente','Previous'));x.setAttribute('aria-label',L('Successiva','Next'));}
+    function to(i){i=Math.max(0,Math.min(items.length-1,i));c.scrollTo({left:pos(items[i]),behavior:'smooth'});}
+    p.onclick=function(){to(cur()-1)};x.onclick=function(){to(cur()+1)};
+    ctl.querySelector('.full').onclick=function(){open(imgs,cur());};
+    c.addEventListener('scroll',function(){requestAnimationFrame(upd)},{passive:true});upd();
+  });
+  /* copy */
+  document.getElementById('copy').addEventListener('click',function(){
+    var b=this,t='crlcaire@gmail.com';
+    function done(){b.textContent=L('Email copiata','Email copied');setTimeout(function(){b.textContent=L('Copia email','Copy email')},2000);}
+    function fb(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent=L('Selezionata: premi Ctrl+C','Selected: press Ctrl+C');}
+    try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}
+  });
+  /* language */
+  function norm(t){return t.replace(/\s+/g,' ').trim();}
+  function walk(){
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var pn=n.parentNode&&n.parentNode.nodeName;return(pn==='SCRIPT'||pn==='STYLE')?2:1;}});
+    var nd;while((nd=w.nextNode())){
+      if(nd.__it===undefined){var k=norm(nd.nodeValue);if(!k||!TX[k])continue;nd.__it=nd.nodeValue;}
+      if(lang==='en'){var v=nd.__it;nd.nodeValue=v.match(/^\s*/)[0]+TX[norm(v)]+v.match(/\s*$/)[0];}else nd.nodeValue=nd.__it;
+    }
+    document.querySelectorAll('[alt],[aria-label]').forEach(function(el){['alt','aria-label'].forEach(function(a){
+      if(!el.hasAttribute(a))return;var key='__it_'+a;if(el[key]===undefined){var v=el.getAttribute(a);if(!AT[v])return;el[key]=v;}
+      el.setAttribute(a,lang==='en'?AT[el[key]]:el[key]);});});
+  }
+  function setLang(l){lang=l;document.documentElement.lang=l;walk();
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false');});
+    document.querySelectorAll('.ctl .n').forEach(function(){});
+    try{localStorage.setItem('cc-cover-lang',l);}catch(e){}}
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.lang);});});
+  var s='it';try{s=localStorage.getItem('cc-cover-lang')||'it';}catch(e){}
+  if(location.hash==='#en')s='en';if(s==='en')setLang('en');
+})();
+</script>
+</body>
+</html>
